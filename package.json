@@ -1,0 +1,20 @@
+{
+  "name": "gh-chart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "rttll <adrianxyz@proton.me>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/shelljs": "^0.8.15",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.5"
+  }
+}
