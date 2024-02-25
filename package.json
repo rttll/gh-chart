@@ -9,6 +9,7 @@
     "build": "tsc"
   },
   "devDependencies": {
+    "@types/minimist": "^1.2.5",
     "@types/shelljs": "^0.8.15",
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.0",
