@@ -18,6 +18,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "chart.js": "^4.4.1",
     "shelljs": "^0.8.5"
   }
 }

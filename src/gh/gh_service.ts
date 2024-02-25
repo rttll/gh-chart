@@ -3,23 +3,21 @@ import { getCurrentRepo } from '../utils/repo';
 
 export class GitHubService {
   private prService: PullRequestService;
-  private owner!: string;
+
   private repo!: string;
 
-  constructor(owner: string = '', repo: string = '') {
-    this.setRepo(owner, repo);
-    this.prService = new PullRequestService(this.owner, this.repo);
+  constructor(repo: string = '') {
+    this.setRepo(repo);
+    this.prService = new PullRequestService(this.repo);
   }
 
-  setRepo(owner: string, repo: string) {
-    if (owner && repo) {
-      this.owner = owner;
+  setRepo(repo: string) {
+    if (repo) {
       this.repo = repo;
       return;
     }
     const currentRepo = getCurrentRepo();
     if (currentRepo) {
-      this.owner = currentRepo.owner;
       this.repo = currentRepo.repo;
       return;
     }

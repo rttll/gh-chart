@@ -1,16 +1,9 @@
 #!/usr/bin/env node
 import { parseArgv } from './utils/cli';
-import { GitHubService } from './gh/gh_service';
+import { build } from './chart/gantt';
+import { Repo } from './types';
 
-interface Repo {
-  number: number;
-  title: string;
-}
+const { repo = '', limit = 10 } = parseArgv();
 
-const { owner = '', repo = '', limit = 10 } = parseArgv();
-
-const ghService = new GitHubService(owner, repo);
-const repos = ghService.pullRequests.fetchPRs(limit);
-repos.forEach((repo: Repo) => {
-  console.log(`PR #${repo.number}: ${repo.title}`);
-});
+const report = build(repo, limit);
+console.log(report);

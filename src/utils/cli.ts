@@ -1,5 +1,4 @@
 interface CommandLineOptions {
-  owner?: string;
   repo?: string;
   limit?: number;
 }
@@ -13,9 +12,7 @@ function parseArgv(): CommandLineOptions {
       const nextArg = args[index + 1];
       switch (arg) {
         case '--repo':
-          const [owner, repo] = nextArg.split('/');
-          options.repo = repo;
-          options.owner = owner;
+          options.repo = nextArg;
           break;
         case '--limit':
           options.limit = parseInt(nextArg, 10);
