@@ -12,11 +12,10 @@ function parseArgv(): CommandLineOptions {
     if (arg.startsWith('--')) {
       const nextArg = args[index + 1];
       switch (arg) {
-        case '--owner':
-          options.owner = nextArg;
-          break;
         case '--repo':
-          options.repo = nextArg;
+          const [owner, repo] = nextArg.split('/');
+          options.repo = repo;
+          options.owner = owner;
           break;
         case '--limit':
           options.limit = parseInt(nextArg, 10);
