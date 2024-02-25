@@ -1,15 +1,16 @@
+#!/usr/bin/env node
+import { parseArgv } from './utils/cli';
 import { GitHubService } from './gh/gh_service';
-import dotenv from 'dotenv';
 
-if (process.env.NODE_ENV === 'development') dotenv.config();
+interface Repo {
+  number: number;
+  title: string;
+}
 
-const owner = process.env.OWNER ?? '';
-const repo = process.env.REPO ?? '';
-const prNumber = parseInt(process.env.PR ?? '');
+const { owner = '', repo = '', limit = 10 } = parseArgv();
 
 const ghService = new GitHubService(owner, repo);
-const repos = ghService.pullRequests.fetchPRs(2);
-for (let repo of repos) {
-  console.log(repo.title);
-  const commits = ghService.pullRequests.fetchCommits(repo.number);
-}
+const repos = ghService.pullRequests.fetchPRs(limit);
+repos.forEach((repo: Repo) => {
+  console.log(`PR #${repo.number}: ${repo.title}`);
+});

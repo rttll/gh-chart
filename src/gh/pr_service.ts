@@ -20,6 +20,7 @@ export class PullRequestService {
   fetchPRs(limit: number = 10, status: 'open' | 'closed' = 'open'): any {
     const command = `gh pr list --repo ${this.owner}/${this.repo} --limit ${limit} --state ${status} --json number,title,state`;
     const output = Executor.executeCommand(command);
+
     try {
       return JSON.parse(output);
     } catch (error) {
