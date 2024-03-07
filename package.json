@@ -21,6 +21,8 @@
   "dependencies": {
     "chart.js": "^4.4.1",
     "esbuild": "^0.20.1",
+    "open": "^10.0.4",
+    "serve-handler": "^6.1.5",
     "shelljs": "^0.8.5"
   }
 }
