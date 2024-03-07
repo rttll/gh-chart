@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "build2": "tsc && esbuild src/charts/gantt/chart.js --bundle --outfile=out.js"
   },
   "devDependencies": {
     "@types/minimist": "^1.2.5",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "chart.js": "^4.4.1",
+    "esbuild": "^0.20.1",
     "shelljs": "^0.8.5"
   }
 }

@@ -1,8 +1,9 @@
+import * as path from 'path';
 import { writeFileSync } from 'fs';
-import { GitHubService } from '../gh/gh_service';
-import { timeData } from '../utils/repo';
+import { GitHubService } from '../../gh/gh_service';
+import { timeData } from '../../utils/repo';
 import { Chart, registerables } from 'chart.js';
-import { PullRequest } from '../types';
+import { PullRequest } from '../../types';
 
 Chart.register(...registerables);
 
@@ -45,8 +46,11 @@ const build = (repo: string, limit: number) => {
   const data = getPRData(repo, limit);
 
   const chartData = prepareChartData(data);
-  const jsonData = JSON.stringify(chartData, null, 2);
-  writeFileSync('chartData.json', jsonData);
+  const contents = `window.chartData=${JSON.stringify(chartData)}`;
+  const outputPath = path.join(__dirname, 'chartData.json');
+
+  writeFileSync(outputPath, contents);
+  return outputPath;
 };
 
 export { build };
